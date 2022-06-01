@@ -1,7 +1,7 @@
 version: "3"
 services:
   app:
-    container_name: containerize_app_1
+    container_name: containerize_app
     image: container_app:latest
     build: ./app
     volumes:
@@ -10,7 +10,7 @@ services:
     - "./nginx/files/localhost.key:/service/src/appkey.key"
 
   nginx:
-    container_name: containerize_nginx_1
+    container_name: containerize_nginx
     image: container_nginx:latest
     build: ./nginx
     volumes:
@@ -18,5 +18,5 @@ services:
     - "./nginx/files/localhost.crt:/service/keys/nginx.crt"
     - "./nginx/files/localhost.key:/service/keys/nginx.key"
     ports:
-      - "443:443"
-      - "80:80"
+      - "443:4433"
+      - "80:8080"

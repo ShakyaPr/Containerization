@@ -5,6 +5,7 @@ WORKER_THREADS=4
 CERT_LOC=/service/src/appkey.crt
 KEY_LOC=/service/src/appkey.key
 
+cd /service/src
 echo "[INFO] starting Web Server"
 
 gunicorn \
