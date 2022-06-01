@@ -2,15 +2,17 @@ FROM nginx:latest
 
 USER root
 
-RUN mkdir /service
+RUN mkdir -p /service/conf && \
+    mkdir /service/log && \
+    mkdir /service/keys 
 
-COPY services/ /service/
+COPY services/ /service/conf/
 
 RUN rm /etc/nginx/conf.d/default.conf && \
-    mv /service/nginx.conf /etc/nginx/nginx.conf 
+    mv /service/conf/nginx.conf /etc/nginx/nginx.conf 
 
-WORKDIR /service/
+WORKDIR /service/conf/
 
-RUN chmod +x /service/init.sh
+RUN chmod +x /service/conf/init.sh
 
 ENTRYPOINT [ "./init.sh" ]   
